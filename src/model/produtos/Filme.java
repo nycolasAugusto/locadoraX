@@ -9,13 +9,18 @@ import model.produtos.produtosUtil.Classificacao;
 public class Filme extends Produto {
     private int duracaoMinutos;
 
-    public Filme(int codigo, String nome, LocalDate dataLancamento, LocalDate dataCadastro, int quantidadeEstoque,
+    private Filme(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,
         Categoria categoria, Classe classe, Classificacao classificacaoIndicativa,
-        int duracaoMinutos) {
-        super(codigo , nome, dataLancamento, dataCadastro, quantidadeEstoque, categoria, classe,
+        int duracaoMinutos){
+        super(codigo , nome, dataCadastro, quantidadeEstoque, categoria, classe,
                 classificacaoIndicativa);
         this.duracaoMinutos = duracaoMinutos;
     }
+    public static Filme criarFilme(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,Categoria categoria, Classe classe, Classificacao classificacaoIndicativa,int duracaoMinutos){
+        
+        return new Filme(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe, classificacaoIndicativa, duracaoMinutos);
+
+    } 
 
     public int getDuracaoMinutos() {
         return duracaoMinutos;
@@ -25,9 +30,12 @@ public class Filme extends Produto {
         this.duracaoMinutos = duracaoMinutos;
     }
 
+
+
+
     @Override
     public String toString() {
-        return "Filme [nome=" + nome + ", duracaoMinutos=" + duracaoMinutos + ", dataLancamento=" + dataLancamento
+        return "Filme [nome=" + nome + ", duracaoMinutos=" + duracaoMinutos 
                 + ", dataCadastro=" + dataCadastro + ", quantidadeEstoque=" + quantidadeEstoque + ", codigo=" + codigo
                 + ", categoria=" + categoria + ", classe=" + classe + ", classificacaoIndicativa="
                 + classificacaoIndicativa + "]";

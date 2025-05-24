@@ -10,11 +10,13 @@ public class Compra {
     private List<Produto> produtosComprados;
     private Cliente cliente;
     private double precoCompra;
+
     public Compra(List<Produto> produtosComprados, Cliente cliente, double precoCompra) {
         this.produtosComprados = produtosComprados;
         this.cliente = cliente;
         this.precoCompra = precoCompra;
     }
+    
     public List<Produto> getProdutosComprados() {
         return produtosComprados;
     }

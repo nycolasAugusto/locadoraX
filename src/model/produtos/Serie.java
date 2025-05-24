@@ -9,12 +9,15 @@ import model.produtos.produtosUtil.Classificacao;
 public class Serie extends Produto {
     private int temporada;
 
-    public Serie(int codigo, String nome, LocalDate dataLancamento, LocalDate dataCadastro, int quantidadeEstoque,
+    private Serie(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,
             Categoria categoria, Classe classe, Classificacao classificacaoIndicativa,
             int temporada) {
-        super(codigo, nome, dataLancamento, dataCadastro, quantidadeEstoque, categoria, classe,
+        super(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe,
                 classificacaoIndicativa);
         this.temporada = temporada;
+    }
+    public static Serie criarSerie(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,Categoria categoria, Classe classe, Classificacao classificacaoIndicativa,int temporada){
+        return new Serie(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe, classificacaoIndicativa, temporada);
     }
 
     public int getTemporada() {

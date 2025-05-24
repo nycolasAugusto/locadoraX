@@ -6,17 +6,16 @@ import model.produtos.produtosUtil.Classificacao;
 
 public abstract class Produto {
     protected String nome ;
-    protected LocalDate dataLancamento, dataCadastro;
+    protected LocalDate dataCadastro;
     protected int quantidadeEstoque, vezesEmprestado, codigo;
     protected Categoria categoria;
     protected Classe classe;
     protected Classificacao classificacaoIndicativa;
 
-    public Produto(int codigo , String nome, LocalDate dataLancamento, LocalDate dataCadastro, int quantidadeEstoque,
+    public Produto(int codigo , String nome, LocalDate dataCadastro, int quantidadeEstoque,
          Categoria categoria, Classe classe, Classificacao classificacaoIndicativa) {
         this.codigo = codigo;
         this.nome = nome;
-        this.dataLancamento = dataLancamento;
         this.dataCadastro = dataCadastro;
         this.quantidadeEstoque = quantidadeEstoque;
         this.categoria = categoria;
@@ -30,14 +29,6 @@ public abstract class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public LocalDate getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(LocalDate dataLancamento) {
-        this.dataLancamento = dataLancamento;
     }
 
     public LocalDate getDataCadastro() {
@@ -98,7 +89,7 @@ public abstract class Produto {
 
     @Override
     public String toString() {
-        return "Produto [nome=" + nome + ", dataLancamento=" + dataLancamento + ", dataCadastro=" + dataCadastro
+        return "Produto [nome=" + nome + ", dataLancamento=" + ", dataCadastro=" + dataCadastro
                 + ", quantidadeEstoque=" + quantidadeEstoque + ", vezesEmprestado=" + vezesEmprestado + ", codigo="
                 + codigo + ", categoria=" + categoria + ", classe=" + classe + ", classificacaoIndicativa="
                 + classificacaoIndicativa + "]";

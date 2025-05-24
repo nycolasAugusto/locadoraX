@@ -1,0 +1,33 @@
+emprestar P 
+
+CLIENTE VAI DIGITAR, varios codigos,
+
+recebemos esses codigos, e criamos uma lista de int 
+
+verificamos se tem algum codigo sem produto 
+
+e perguntamos se o cliente deseja, digitar dnv ou prosseguir assim
+ 
+quando a lista estiver finalizada 
+
+onfirmamos o emprestimo chamando a funcao 
+
+digitando o codigo do clinte, a data de emprestimo e devolucao 
+mostramos o valor que deu chamando o metodo calcular valor emprestimo
+e perguntamos Finalizar S ou N ai se finalizado,  
+
+--------------
+
+TEM QUER TER 3 CRUD criar alterar remover e listagem ----- cliente e produtos , EMPRESTIMO ? , nao sei se entra como crud , pois na ha alteracao 
+2 precisam ter relacao entre si ----- cliente com produtos, emprestimo com cliente e produtos 
+
+--------------
+0-0 ORGANIZAR AS VIEW PARA FAZER OS TESTES MAIS FACILMENTE ::::
+
+1 Conseguir cadastrar Cliente, produtos
+2 emprestar produto
+3 devolver produto
+4 comprar produtos
+5 listagens
+6 fazer as verificacoes Exceptions 
+7 fazer os aquivos TXT com banco de dados

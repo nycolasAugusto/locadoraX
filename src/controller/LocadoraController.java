@@ -1,12 +1,16 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import model.pessoa.Cliente;
 import model.produtos.Filme;
+import model.produtos.Jogo;
 import model.produtos.Produto;
+import model.produtos.Serie;
 import model.produtos.produtosUtil.Categoria;
 import model.produtos.produtosUtil.Classe;
 import model.produtos.produtosUtil.Classificacao;
@@ -49,20 +53,107 @@ public class LocadoraController {
                 .orElse(0) + 1;
     }
 
-    public boolean cadastrarFilme(String nome, LocalDate dataLancamento, LocalDate dataCadastro, int quantidadeEstoque, String categoria, int classe, int classificacaoIndicativa, int duracaoMinutos){
+    public boolean cadastrarFilme(String nome, LocalDate dataCadastro, int quantidadeEstoque, String categoria, int classe, int classificacaoIndicativa, int duracaoMinutos){
 
-        Filme filme = new Filme(classificacaoIndicativa, nome, dataLancamento, dataCadastro, quantidadeEstoque, Categoria.getCategoria(categoria), Classe.getClasse(classe), 
+        Filme filme = Filme.criarFilme(gerarNovoCodigo(), nome, dataCadastro, quantidadeEstoque, Categoria.getCategoria(categoria), Classe.getClasse(classe), 
         Classificacao.getClasse(classificacaoIndicativa), duracaoMinutos);    
 
         adicionarProduto(filme);
 
         return true;
+    }
+    public boolean cadastrarSerie(String nome,  LocalDate dataCadastro, int quantidadeEstoque, String categoria, int classe, int classificacaoIndicativa,int temporada){
+        
+        Serie serie = Serie.criarSerie(gerarNovoCodigo(), nome,  dataCadastro, quantidadeEstoque, Categoria.getCategoria(categoria), Classe.getClasse(classe), 
+        Classificacao.getClasse(classe), temporada);
+        adicionarProduto(serie);
+        return true;
+    }
+    public boolean cadastrarJogo(String nome, LocalDate dataCadastro, int quantidadeEstoque, String categoria, int classe, int classificacaoIndicativa,String plataforma){
+
+        Jogo jogo = Jogo.criarJogo(gerarNovoCodigo(), nome, dataCadastro, quantidadeEstoque, Categoria.getCategoria(categoria), Classe.getClasse(classe), 
+        Classificacao.getClasse(classe), plataforma);
+
+        adicionarProduto(jogo);
+        
+        return true;
+
+    }
+    //Melhorar Esta Listagem !!
+
+    public List<String> listarTodosProdutos(){
+        return produtos.stream()
+            .map(p -> p.toString())
+            .toList();
+    }
+
+    public boolean emprestarProdutos(List<Produto> carrinhoCliente, int cpf , LocalDate dataDevolucao , LocalDate dataEmprestimo){
+        
+        
+        Cliente cliente = acharCliente(cpf);
+
+        Emprestimo emprestimo  = Emprestimo.criarEmprestimo(carrinhoCliente, cliente, dataEmprestimo, dataDevolucao, cpf);
+        cliente.adicionarEmprestimo(emprestimo);
+        emprestimos.add(emprestimo);
+        
+        return true;
 
 
     }
-    public List<Produto> getProdutos() {
-        return produtos;
+    public LocalDate dataStringParaLocaLDate(String dataUser){
+        if (dataUser.contains("-")) {
+                dataUser = dataUser.replaceAll("-", "/");
+            }
+            DateTimeFormatter frmtReceber = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataConvertida = LocalDate.parse(dataUser, frmtReceber);
+            return dataConvertida;
     }
+
+
+
+    public boolean cadastrarCliente(String nome, String email, String endereco, long cpf, long numero, String dataNascimento){
+        
+        Cliente cliente = Cliente.criarCliente(nome, email, endereco, cpf, numero, dataStringParaLocaLDate(dataNascimento));
+        adicionarCliente(cliente);
+        return true;
+    
+    }
+
+
+    public Cliente acharCliente(int cpf){
+        return clientes.stream()
+            .filter(c -> c.getCpf() == cpf)
+            .findFirst()
+            .orElse(null);
+    }
+
+    public Produto procurarProdutoPorCodigo(int codigo){
+        return produtos.stream()
+            .filter(p -> p.getCodigo() == codigo)
+            .findFirst()
+            .orElse(null);
+    }
+
+    public boolean verificarCodigo(int codigo, List<Produto> carrinho ){
+        for (Produto produtoCarrinho : carrinho) {
+            if (produtoCarrinho.getCodigo() == codigo) {
+                return false; 
+            }
+        }
+
+        for (Produto produto : produtos) {
+            if (produto.getCodigo() == codigo) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+    }
+    
+
+
+
+
 
     
 
@@ -79,4 +170,4 @@ public class LocadoraController {
 
 
 
-}
+

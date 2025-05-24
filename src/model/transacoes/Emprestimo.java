@@ -13,7 +13,7 @@ public class Emprestimo {
     private LocalDate dataEmprestimo , dataDevolucao;
     private double precoEmprestimo;
     
-    public Emprestimo(List<Produto> produtosEmprestados, Cliente cliente, LocalDate dataEmprestimo,
+    private Emprestimo(List<Produto> produtosEmprestados, Cliente cliente, LocalDate dataEmprestimo,
             LocalDate dataDevolucao, double precoEmprestimo) {
         this.produtosEmprestados = produtosEmprestados;
         this.cliente = cliente;
@@ -21,6 +21,11 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
         this.precoEmprestimo = precoEmprestimo;
     }
+    public static Emprestimo criarEmprestimo(List<Produto> produtosEmprestados, Cliente cliente, LocalDate dataEmprestimo,
+            LocalDate dataDevolucao, double precoEmprestimo){
+                return new Emprestimo(produtosEmprestados, cliente, dataEmprestimo, dataDevolucao, precoEmprestimo);
+            }
+
 
 
     public List<Produto> getProdutosEmprestados() {
