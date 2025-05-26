@@ -55,6 +55,18 @@ public abstract class GerenciarTransacoes {
 
                 break;
 
+            case 2 :
+                System.out.println("Digite seu cpf !!");
+                cpf = scanner.nextLong();
+                
+                break;
+            case 3 :
+                //System.out.println("Digite seu cpf !!");
+                //cpf = scanner.nextLong();
+                controller.listarEmprestimo().forEach(System.out::println);
+                
+                break;
+
             default:
                 break;
         }

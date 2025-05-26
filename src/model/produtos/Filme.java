@@ -30,9 +30,16 @@ public class Filme extends Produto {
         this.duracaoMinutos = duracaoMinutos;
     }
 
+    
 
 
 
+
+    @Override
+    public void diminuirEstoque() {
+        this.quantidadeEstoque -= 1;
+        
+    }
     @Override
     public String toString() {
         return "Filme [nome=" + nome + ", duracaoMinutos=" + duracaoMinutos 

@@ -87,12 +87,24 @@ public class LocadoraController {
             .toList();
     }
 
+    public List<String> listarEmprestimo(){
+        return emprestimos.stream()
+            .map(p -> p.toString())
+            .toList();
+    }
+
+
     public boolean emprestarProdutos(List<Produto> carrinhoCliente, int cpf , LocalDate dataDevolucao , LocalDate dataEmprestimo){
         
         
         Cliente cliente = acharCliente(cpf);
 
+        for (Produto produto : carrinhoCliente) {
+            produto.diminuirEstoque();
+        }
+
         Emprestimo emprestimo  = Emprestimo.criarEmprestimo(carrinhoCliente, cliente, dataEmprestimo, dataDevolucao, cpf);
+        
         cliente.adicionarEmprestimo(emprestimo);
         emprestimos.add(emprestimo);
         

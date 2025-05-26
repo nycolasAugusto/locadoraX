@@ -16,12 +16,19 @@ public class Jogo extends Produto{
                 classificacaoIndicativa);
         this.plataforma = plataforma;
     }
-      public static Jogo criarJogo(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,
+    
+    public static Jogo criarJogo(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,
         Categoria categoria, Classe classe, Classificacao classificacaoIndicativa,
             String plataforma) {
         return new Jogo(codigo, nome, dataCadastro, quantidadeEstoque,
                         categoria, classe, classificacaoIndicativa, plataforma);
 
+    }
+
+    @Override
+    public void diminuirEstoque() {
+        this.quantidadeEstoque -= 1;
+        
     }
 
     public String getPlataforma() {
@@ -31,6 +38,8 @@ public class Jogo extends Produto{
     public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
+
+    
 
     
 

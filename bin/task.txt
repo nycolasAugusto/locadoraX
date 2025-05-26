@@ -24,10 +24,12 @@ TEM QUER TER 3 CRUD criar alterar remover e listagem ----- cliente e produtos , 
 --------------
 0-0 ORGANIZAR AS VIEW PARA FAZER OS TESTES MAIS FACILMENTE ::::
 
-1 Conseguir cadastrar Cliente, produtos
-2 emprestar produto
-3 devolver produto
-4 comprar produtos
-5 listagens
+1 Conseguir cadastrar Cliente, produtos OK ----- FALTA METODOS DE LISTAR, ALTERAR, DA PARA ALTERAR A CLASSE DELES
+2 emprestar produto ----- FALTA LAPIDAR E FAZER VERIFICACAO DE CPF
+arrumar, nao esta funcionadno direito, nao esta criando a classe emprestimo e nem diminuido do estoque, ver oq esta dando 
+
+3 devolver produto --- NAO ok --- falta criar e gerar os atrasos
+4 comprar produtos 
+5 listagens fazer de tudo 
 6 fazer as verificacoes Exceptions 
 7 fazer os aquivos TXT com banco de dados

@@ -60,7 +60,7 @@ public abstract class GerenciarProdutos {
                     scanner.nextLine();
                     System.out.print("Classificação Indicativa (Ex: LIVRE, 10 ANOS): ");
                     int classificacaoSerie = scanner.nextInt();
-                    System.out.print("Número de Temporadas: ");
+                    System.out.print("Número da Temporada: ");
                     int temporadaSerie = scanner.nextInt();
                     scanner.nextLine();
 
@@ -83,6 +83,7 @@ public abstract class GerenciarProdutos {
                     scanner.nextLine();
                     System.out.print("Classificação Indicativa (Ex: LIVRE, 18 ANOS): ");
                     int classificacaoJogo = scanner.nextInt();
+                    scanner.nextLine();
                     System.out.print("Plataforma: ");
                     String plataformaJogo = scanner.nextLine();
 

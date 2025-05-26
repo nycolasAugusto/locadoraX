@@ -22,6 +22,9 @@ public abstract class Produto {
         this.classe = classe;
         this.classificacaoIndicativa = classificacaoIndicativa;
     }
+    public abstract void diminuirEstoque();
+    //public abstract void vezesEmprestado();
+
 
     public String getNome() {
         return nome;

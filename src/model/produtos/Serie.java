@@ -20,6 +20,12 @@ public class Serie extends Produto {
         return new Serie(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe, classificacaoIndicativa, temporada);
     }
 
+    @Override
+    public void diminuirEstoque() {
+        this.quantidadeEstoque -= 1;
+        
+    }
+    
     public int getTemporada() {
         return temporada;
     }
