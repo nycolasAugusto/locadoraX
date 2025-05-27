@@ -6,6 +6,8 @@ import model.produtos.produtosUtil.Categoria;
 import model.produtos.produtosUtil.Classe;
 import model.produtos.produtosUtil.Classificacao;
 
+import model.produtos.produtosUtil.Produto;
+
 public class Filme extends Produto {
     private int duracaoMinutos;
 
@@ -21,7 +23,13 @@ public class Filme extends Produto {
         return new Filme(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe, classificacaoIndicativa, duracaoMinutos);
 
     } 
+    
 
+    @Override
+    public String exibirInformacoesCruciais() {
+        return "Nome: " + nome + ", Categoria: " + categoria + ", Classe: " + classe + ", Duração: " + duracaoMinutos + " minutos";
+    
+    }
     public int getDuracaoMinutos() {
         return duracaoMinutos;
     }
@@ -42,10 +50,9 @@ public class Filme extends Produto {
     }
     @Override
     public String toString() {
-        return "Filme [nome=" + nome + ", duracaoMinutos=" + duracaoMinutos 
-                + ", dataCadastro=" + dataCadastro + ", quantidadeEstoque=" + quantidadeEstoque + ", codigo=" + codigo
-                + ", categoria=" + categoria + ", classe=" + classe + ", classificacaoIndicativa="
-                + classificacaoIndicativa + "]";
+        return codigo + " - " + nome + ", " + dataCadastro + ", estoque: " + quantidadeEstoque +
+           ", categoria: " + categoria + ", classe: " + classe +
+           ", classificação: " + classificacaoIndicativa + ", duração: " + duracaoMinutos + " min";
     }
 
 

@@ -1,9 +1,10 @@
 package model.transacoes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import model.pessoa.Cliente;
-import model.produtos.Produto;
+import model.produtos.produtosUtil.Produto;
 
 public class Compra {
     
@@ -11,10 +12,14 @@ public class Compra {
     private Cliente cliente;
     private double precoCompra;
 
-    public Compra(List<Produto> produtosComprados, Cliente cliente, double precoCompra) {
+    private Compra(List<Produto> produtosComprados, Cliente cliente, double precoCompra) {
         this.produtosComprados = produtosComprados;
         this.cliente = cliente;
         this.precoCompra = precoCompra;
+    }
+
+    public static Compra criarCompra(List<Produto> produtosComprados, Cliente cliente, double precoCompra){
+        return new Compra(produtosComprados, cliente, precoCompra);
     }
     
     public List<Produto> getProdutosComprados() {

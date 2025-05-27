@@ -6,7 +6,9 @@ import model.produtos.produtosUtil.Categoria;
 import model.produtos.produtosUtil.Classe;
 import model.produtos.produtosUtil.Classificacao;
 
-public class Jogo extends Produto{
+import model.produtos.produtosUtil.Produto;
+
+public class Jogo extends Produto {
     private String plataforma;
 
     private Jogo(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,
@@ -25,6 +27,14 @@ public class Jogo extends Produto{
 
     }
 
+    
+
+    @Override
+    public String exibirInformacoesCruciais() {
+        return "Nome: " + nome + ", Categoria: " + categoria + ", Classe: " + classe + ", Plataforma : " + plataforma;
+    
+    }
+
     @Override
     public void diminuirEstoque() {
         this.quantidadeEstoque -= 1;
@@ -39,6 +49,12 @@ public class Jogo extends Produto{
         this.plataforma = plataforma;
     }
 
+    @Override
+    public String toString() {
+        return codigo + " - " + nome + ", " + dataCadastro + ", estoque: " + quantidadeEstoque +
+            ", categoria: " + categoria + ", classe: " + classe +
+            ", classificação: " + classificacaoIndicativa + ", plataforma: " + plataforma;
+    }
     
 
     

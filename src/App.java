@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 import controller.LocadoraController;
 import model.pessoa.Cliente;
-import model.produtos.Produto;
+import model.produtos.produtosUtil.Produto;
 import model.transacoes.Atraso;
 import model.transacoes.Compra;
 import model.transacoes.Emprestimo;
+import view.funcionario.ConsultarListagens;
 import view.funcionario.GerenciarCliente;
 import view.funcionario.GerenciarProdutos;
 import view.funcionario.GerenciarTransacoes;
@@ -91,8 +92,7 @@ public class App {
                         System.out.println("1. Gerenciar Produtos (Filmes, Séries, Jogos)");
                         System.out.println("2. Gerenciar Clientes");
                         System.out.println("3. Gerenciar Trasacoes");
-                        System.out.println("4. Consultar Atrasos");
-                        System.out.println("5. Registrar Compras (Vendas)");
+                        System.out.println("4. Consultar Listagens");
                         System.out.println("0. Voltar ao Menu Principal");
                         System.out.print("Escolha uma opção: ");
 
@@ -110,7 +110,7 @@ public class App {
                                 GerenciarTransacoes.gerenciarTransacoes(controller, scanner);
                                 break;
                             case 4:
-                                System.out.println("Consultar Atrasos");
+                                ConsultarListagens.consultarListagens(controller, scanner);
                                 break;
                             case 5:
                                 System.out.println("Registrar Compras (Vendas)");

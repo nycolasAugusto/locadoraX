@@ -1,8 +1,5 @@
-package model.produtos;
+package model.produtos.produtosUtil;
 import java.time.LocalDate;
-import model.produtos.produtosUtil.Categoria;
-import model.produtos.produtosUtil.Classe;
-import model.produtos.produtosUtil.Classificacao;
 
 public abstract class Produto {
     protected String nome ;
@@ -24,7 +21,7 @@ public abstract class Produto {
     }
     public abstract void diminuirEstoque();
     //public abstract void vezesEmprestado();
-
+    public abstract String exibirInformacoesCruciais();
 
     public String getNome() {
         return nome;

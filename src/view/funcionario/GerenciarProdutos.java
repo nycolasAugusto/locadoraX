@@ -87,7 +87,7 @@ public abstract class GerenciarProdutos {
                     System.out.print("Plataforma: ");
                     String plataformaJogo = scanner.nextLine();
 
-                    boolean jogoCadastrado = controller.cadastrarJogo(nomeJogo, LocalDate.now(), // dataCadastro
+                    boolean jogoCadastrado = controller.cadastrarJogo(nomeJogo, LocalDate.now(),
                             estoqueJogo, categoriaJogo, classeJogo,
                             classificacaoJogo, plataformaJogo);
                     System.out.println(jogoCadastrado ? "Jogo cadastrado com sucesso!" : "Falha ao cadastrar jogo.");

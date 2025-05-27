@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import model.pessoa.Cliente;
-import model.produtos.Produto;
+import model.produtos.produtosUtil.Produto;
 
 public class Emprestimo {
 
@@ -59,7 +59,13 @@ public class Emprestimo {
         this.precoEmprestimo = precoEmprestimo;
     }
     
-
+    @Override
+    public String toString() {
+        return "Emprestimo [produtosEmprestados=" + produtosEmprestados + ", cliente=" + cliente + ", dataEmprestimo="
+                + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", precoEmprestimo=" + precoEmprestimo + "]";
+    }
+    
+    
     
 
 

@@ -1,18 +1,22 @@
 package model.pessoa;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-import model.produtos.Produto;
+import model.transacoes.Compra;
 import model.transacoes.Emprestimo;
 
 public final class Cliente extends Pessoa {
-    private List<Produto> produtosComprados;
+    private List<Compra> compras;
     private List<Emprestimo> produtosAlugados;
     private double multaApagar;
 
     private Cliente(String nome, String email, String endereco, long cpf, long numero, LocalDate dataNascimento) {
         super(nome, email, endereco, cpf, numero, dataNascimento);
+        produtosAlugados = new ArrayList<>();
+        compras = new ArrayList<>();
+
        
     }   
     
@@ -23,8 +27,8 @@ public final class Cliente extends Pessoa {
     public void adicionarEmprestimo(Emprestimo emprestimo){
         produtosAlugados.add(emprestimo);
     }
-    public void adicionarCompra(Produto produto){
-        produtosComprados.add(produto);
+    public void adicionarCompra(Compra compra){
+            compras.add(compra);
     }
 
     public List<Emprestimo> getListaDeCompras() {
