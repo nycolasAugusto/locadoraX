@@ -1,7 +1,9 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -163,6 +165,7 @@ public class LocadoraController {
     }
 
     public boolean cpfValido(long cpf) {
+
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getCliente().getCpf() == cpf) {
                 return false;
@@ -241,6 +244,69 @@ public class LocadoraController {
         return dataConvertida;
     }
 
+    public int contarDias(LocalDate dataMaior, LocalDate dataMenor) {
+        Period periodo = Period.between(dataMenor, dataMaior);
+
+        int dias = periodo.getDays();
+        int meses = periodo.getMonths();
+        int anos = periodo.getYears();
+
+        return dias + (meses * 30) + (anos * 365);
+    }
+
+    public double calcularMulta(double valorCompra, int diasAtraso) {
+        double porcentagemPorDia = 0.05;
+        double multa = valorCompra * porcentagemPorDia * diasAtraso;
+        return multa;
+    }
+
+    public boolean devolverProdutos(Long cpf, String dataDevolvida, List<Integer> codigosParaDevolver) {
+        LocalDate dataDevolvidaCerta = dataStringParaLocaLDate(dataDevolvida.trim());
+
+        Emprestimo emprestimoEncontrado = null;
+       
+
+        for (Emprestimo emprestimo : emprestimos) {
+            if (emprestimo.getCliente().getCpf() == cpf) {
+                emprestimoEncontrado = emprestimo;
+                break;
+            }
+        }
+
+        if (emprestimoEncontrado == null) {
+            return false;
+        }
+        List<Produto> produtosEntreguesComAtraso = new ArrayList<>();
+        for (Produto p : emprestimoEncontrado.getProdutosEmprestados()) {
+            for (Integer c : codigosParaDevolver) {
+                if (c == p.getCodigo()) {
+                    emprestimoEncontrado.removerProdutosEmprestimo(p);
+                    produtosEntreguesComAtraso.add(p);
+                    
+
+                }
+            }
+        }
+
+        long diasPrevisto = contarDias(emprestimoEncontrado.getDataEmprestimo(),
+                emprestimoEncontrado.getDataDevolucao());
+        long diasEfetivo = contarDias(emprestimoEncontrado.getDataEmprestimo(), dataDevolvidaCerta);
+
+        if (diasEfetivo > diasPrevisto) {
+            int diasAtraso = (int) (diasEfetivo - diasPrevisto);
+            Atraso atraso = Atraso.criarAtraso(emprestimoEncontrado.getCliente(), produtosEntreguesComAtraso,
+                    diasAtraso, calcularMulta(emprestimoEncontrado.getPrecoEmprestimo(), diasAtraso));
+            adicionarAtraso(atraso);
+
+        }
+
+        if (emprestimoEncontrado.getProdutosEmprestados().isEmpty()) {
+            emprestimos.remove(emprestimoEncontrado);
+        }
+
+        return true;
+    }
+
     public boolean cadastrarCliente(String nome, String email, String endereco, long cpf, long numero,
             String dataNascimento) {
 
@@ -257,7 +323,15 @@ public class LocadoraController {
                 .findFirst()
                 .orElse(null);
     }
-
+    public boolean clientePossuiEmprestimo(Long cpf){
+        Cliente cliente = acharCliente(cpf);
+        if (cliente.getProdutosAlugados().isEmpty()) {
+            return false;
+        }
+        return true;
+          
+        
+    }
     public Produto procurarProdutoPorCodigo(int codigo) {
         return produtos.stream()
                 .filter(p -> p.getCodigo() == codigo)

@@ -1,20 +1,3 @@
-emprestar P 
-
-CLIENTE VAI DIGITAR, varios codigos,
-
-recebemos esses codigos, e criamos uma lista de int 
-
-verificamos se tem algum codigo sem produto 
-
-e perguntamos se o cliente deseja, digitar dnv ou prosseguir assim
- 
-quando a lista estiver finalizada 
-
-onfirmamos o emprestimo chamando a funcao 
-
-digitando o codigo do clinte, a data de emprestimo e devolucao 
-mostramos o valor que deu chamando o metodo calcular valor emprestimo
-e perguntamos Finalizar S ou N ai se finalizado,  
 
 --------------
 
@@ -22,14 +5,16 @@ TEM QUER TER 3 CRUD criar alterar remover e listagem ----- cliente e produtos , 
 2 precisam ter relacao entre si ----- cliente com produtos, emprestimo com cliente e produtos 
 
 --------------
-0-0 ORGANIZAR AS VIEW PARA FAZER OS TESTES MAIS FACILMENTE ::::
 
-1 Conseguir cadastrar Cliente, produtos OK ----- FALTA METODOS DE LISTAR, ALTERAR, DA PARA ALTERAR A CLASSE DELES
-2 emprestar produto ----- FALTA LAPIDAR E FAZER VERIFICACAO DE CPF
-arrumar, nao esta funcionadno direito, nao esta criando a classe emprestimo e nem diminuido do estoque, ver oq esta dando 
 
-3 devolver produto --- NAO ok --- falta criar e gerar os atrasos
-4 comprar produtos 
-5 listagens fazer de tudo 
+
+3 devolver produto --- quase dando certo, da erro quando confirma, arrumar, e testar devolucao com atraso, e listar atraso p ver se apareceu 
+5 listagens fazer de tudo = compras de usuario, produtos por codigo, produtos mais emprestados, mais emprestados por tipo, atrasos por valor da multa, por mais dias de atraso 
+tb ver coisas que nao precisa listar em certos lugares EX: nao precisa mostrar o estoque quando cria o mostra carrinho !
+fazer dois tipos de listagem, uma apenas com [nome, codigo, os 3 utils , e o atributo pessoal do produto] - e outra com [TUDO...estoque, vezez emprestado, etc]
+
 6 fazer as verificacoes Exceptions 
 7 fazer os aquivos TXT com banco de dados
+
+
+ver pq quando cadastra jogo nao salva a classificacao

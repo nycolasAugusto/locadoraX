@@ -35,10 +35,19 @@ public class Jogo extends Produto {
     
     }
 
+     @Override
+    public void vezesEmprestado() {
+        vezesEmprestado += 1;
+        
+    }
     @Override
     public void diminuirEstoque() {
         this.quantidadeEstoque -= 1;
         
+    }
+    @Override
+    public void aumentarEstoque() {
+        this.quantidadeEstoque += 1; 
     }
 
     public String getPlataforma() {

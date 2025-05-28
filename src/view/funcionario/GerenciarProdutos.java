@@ -36,7 +36,7 @@ public abstract class GerenciarProdutos {
                     System.out.print("Classe de Aluguel (1-LANCAMENTO, 2-PREMIUM, 3-NORMAL, 4-ANTIGO): ");
                     int classeFilme = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Classificação Indicativa (Ex: LIVRE, 10 ANOS): ");
+                    System.out.print("Classificação Indicativa (1 - LIVRE, 2 - 18+ ): ");
                     int classificacaoFilme = scanner.nextInt();
                     System.out.print("Duração em Minutos: ");
                     int duracaoFilme = scanner.nextInt();
@@ -58,7 +58,7 @@ public abstract class GerenciarProdutos {
                     System.out.print("Classe de Aluguel (1-LANCAMENTO, 2-PREMIUM, 3-NORMAL, 4-ANTIGO): ");
                     int classeSerie = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Classificação Indicativa (Ex: LIVRE, 10 ANOS): ");
+                    System.out.print("Classificação Indicativa (1 - LIVRE, 2 - 18+ ): ");
                     int classificacaoSerie = scanner.nextInt();
                     System.out.print("Número da Temporada: ");
                     int temporadaSerie = scanner.nextInt();
@@ -81,7 +81,7 @@ public abstract class GerenciarProdutos {
                     System.out.print("Classe de Aluguel (1-LANCAMENTO, 2-PREMIUM, 3-NORMAL, 4-ANTIGO): ");
                     int classeJogo = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Classificação Indicativa (Ex: LIVRE, 18 ANOS): ");
+                    System.out.print("Classificação Indicativa (1 - LIVRE, 2 - 18+ ): ");
                     int classificacaoJogo = scanner.nextInt();
                     scanner.nextLine();
                     System.out.print("Plataforma: ");

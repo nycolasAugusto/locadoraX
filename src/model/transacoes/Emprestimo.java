@@ -20,16 +20,20 @@ public class Emprestimo {
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.precoEmprestimo = precoEmprestimo;
+        
     }
     public static Emprestimo criarEmprestimo(List<Produto> produtosEmprestados, Cliente cliente, LocalDate dataEmprestimo,
-            LocalDate dataDevolucao, double precoEmprestimo){
+            LocalDate dataDevolucao, double precoEmprestimo ){
                 return new Emprestimo(produtosEmprestados, cliente, dataEmprestimo, dataDevolucao, precoEmprestimo);
             }
 
 
-
+    
     public List<Produto> getProdutosEmprestados() {
         return produtosEmprestados;
+    }
+    public void removerProdutosEmprestimo(Produto p){
+        produtosEmprestados.remove(p);
     }
     public void setProdutosEmprestados(List<Produto> produtosEmprestados) {
         this.produtosEmprestados = produtosEmprestados;
@@ -58,10 +62,17 @@ public class Emprestimo {
     public void setPrecoEmprestimo(double precoEmprestimo) {
         this.precoEmprestimo = precoEmprestimo;
     }
+    private String mostraApenasNomeProduto(List<Produto> lista){
+        String resultado = "";
+        for (Produto produto : lista) {
+            resultado += produto.getNome();
+        } 
+        return resultado;
+    }
     
     @Override
     public String toString() {
-        return "Emprestimo [produtosEmprestados=" + produtosEmprestados + ", cliente=" + cliente + ", dataEmprestimo="
+        return "Emprestimo [produtosEmprestados=" + mostraApenasNomeProduto(produtosEmprestados) + ", cliente=" + cliente.getNome() + ", dataEmprestimo="
                 + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", precoEmprestimo=" + precoEmprestimo + "]";
     }
     

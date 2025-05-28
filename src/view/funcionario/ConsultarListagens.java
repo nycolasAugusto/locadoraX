@@ -15,7 +15,8 @@ public abstract class ConsultarListagens {
         System.out.println("2 - Listar todos os usuários");
         System.out.println("3 - Listar todos os produtos");
         System.out.println("4 - Listar produtos por tipo");
-        System.out.println("5 - Listar produtos em atraso");
+        System.out.println("5 - Listar atrasos");
+        System.out.println("6 - Listar Emprestimos");
         System.out.println("0 - Voltar");
         System.out.print("Escolha uma opção: ");
 
@@ -24,12 +25,11 @@ public abstract class ConsultarListagens {
             scanner.next();
         }
         opcao = scanner.nextInt();
-        scanner.nextLine(); // limpa buffer
+        scanner.nextLine();
 
         switch (opcao) {
             case 1:
                 System.out.println("-> Listando todos os empréstimos...");
-                // Exemplo: iterar e imprimir empréstimos
                 controller.listarEmprestimo().forEach(System.out::println);
                 break;
 
@@ -86,6 +86,11 @@ public abstract class ConsultarListagens {
             case 5:
                 System.out.println("-> Listando produtos em atraso...");
                 controller.listarAtrasos().forEach(System.out::println);
+                break;
+
+            case 6:
+                System.out.println("-> Listando todos os empréstimos...");
+                controller.listarEmprestimo().forEach(System.out::println);
                 break;
 
             case 0:

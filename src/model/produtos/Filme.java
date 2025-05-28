@@ -38,14 +38,18 @@ public class Filme extends Produto {
         this.duracaoMinutos = duracaoMinutos;
     }
 
-    
-
-
-
-
     @Override
     public void diminuirEstoque() {
-        this.quantidadeEstoque -= 1;
+        this.quantidadeEstoque -= 1; 
+    }
+    @Override
+    public void aumentarEstoque() {
+        this.quantidadeEstoque += 1; 
+    }
+    
+    @Override
+    public void vezesEmprestado() {
+        vezesEmprestado += 1;
         
     }
     @Override

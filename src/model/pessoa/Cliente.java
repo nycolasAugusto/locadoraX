@@ -27,12 +27,31 @@ public final class Cliente extends Pessoa {
     public void adicionarEmprestimo(Emprestimo emprestimo){
         produtosAlugados.add(emprestimo);
     }
+    public void removerEmprestimo(Emprestimo emprestimo){
+        produtosAlugados.remove(emprestimo);
+    }
     public void adicionarCompra(Compra compra){
             compras.add(compra);
     }
 
     public List<Emprestimo> getListaDeCompras() {
         return produtosAlugados;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
+    }
+
+    public List<Emprestimo> getProdutosAlugados() {
+        return produtosAlugados;
+    }
+
+    public void setProdutosAlugados(List<Emprestimo> produtosAlugados) {
+        this.produtosAlugados = produtosAlugados;
     }
 
     public void setListaDeCompras(List<Emprestimo> produtosAlugados) {

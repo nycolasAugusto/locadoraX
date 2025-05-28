@@ -31,6 +31,15 @@ public class Serie extends Produto {
         this.quantidadeEstoque -= 1;
         
     }
+    @Override
+    public void aumentarEstoque() {
+        this.quantidadeEstoque += 1; 
+    }
+     @Override
+    public void vezesEmprestado() {
+        vezesEmprestado += 1;
+        
+    }
     
     public int getTemporada() {
         return temporada;

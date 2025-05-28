@@ -1,6 +1,4 @@
 package model.transacoes;
-
-import java.time.LocalDate;
 import java.util.List;
 
 import model.pessoa.Cliente;
