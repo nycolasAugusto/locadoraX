@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import dal.ClientesDAO;
 import model.pessoa.Cliente;
 import model.produtos.Filme;
 import model.produtos.Jogo;
@@ -101,7 +103,7 @@ public class LocadoraController {
 
         Serie serie = Serie.criarSerie(gerarNovoCodigo(), nome, dataCadastro, quantidadeEstoque,
                 Categoria.getCategoria(categoria), Classe.getClasse(classe),
-                Classificacao.getClasse(classe), temporada);
+                Classificacao.getClasse(classificacaoIndicativa), temporada);
         adicionarProduto(serie);
         return true;
     }
@@ -111,7 +113,7 @@ public class LocadoraController {
 
         Jogo jogo = Jogo.criarJogo(gerarNovoCodigo(), nome, dataCadastro, quantidadeEstoque,
                 Categoria.getCategoria(categoria), Classe.getClasse(classe),
-                Classificacao.getClasse(classe), plataforma);
+                Classificacao.getClasse(classificacaoIndicativa), plataforma);
 
         adicionarProduto(jogo);
 
@@ -264,8 +266,8 @@ public class LocadoraController {
         LocalDate dataDevolvidaCerta = dataStringParaLocaLDate(dataDevolvida.trim());
 
         Emprestimo emprestimoEncontrado = null;
-       
 
+        // Buscar empréstimo ativo do cliente
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getCliente().getCpf() == cpf) {
                 emprestimoEncontrado = emprestimo;
@@ -274,30 +276,42 @@ public class LocadoraController {
         }
 
         if (emprestimoEncontrado == null) {
-            return false;
+            return false; // Nenhum empréstimo encontrado
         }
-        List<Produto> produtosEntreguesComAtraso = new ArrayList<>();
-        for (Produto p : emprestimoEncontrado.getProdutosEmprestados()) {
-            for (Integer c : codigosParaDevolver) {
-                if (c == p.getCodigo()) {
-                    emprestimoEncontrado.removerProdutosEmprestimo(p);
-                    produtosEntreguesComAtraso.add(p);
-                    
 
+        List<Produto> produtosParaRemover = new ArrayList<>();
+        List<Produto> produtosEntreguesComAtraso = new ArrayList<>();
+
+        // Verifica e remove os produtos do empréstimo
+        for (Produto produto : new ArrayList<>(emprestimoEncontrado.getProdutosEmprestados())) {
+            if (codigosParaDevolver.contains(produto.getCodigo())) {
+                // Atualiza estoque
+                produto.aumentarEstoque();
+
+                // Verifica atraso
+                long diasPrevisto = contarDias(emprestimoEncontrado.getDataEmprestimo(),
+                        emprestimoEncontrado.getDataDevolucao());
+                long diasEfetivo = contarDias(emprestimoEncontrado.getDataEmprestimo(), dataDevolvidaCerta);
+
+                if (diasEfetivo > diasPrevisto) {
+                    produtosEntreguesComAtraso.add(produto);
                 }
+
+                // Remove produto do empréstimo
+                emprestimoEncontrado.removerProdutosEmprestimo(produto);
             }
         }
 
-        long diasPrevisto = contarDias(emprestimoEncontrado.getDataEmprestimo(),
-                emprestimoEncontrado.getDataDevolucao());
-        long diasEfetivo = contarDias(emprestimoEncontrado.getDataEmprestimo(), dataDevolvidaCerta);
+        if (!produtosEntreguesComAtraso.isEmpty()) {
+            int diasAtraso = contarDias(emprestimoEncontrado.getDataDevolucao(), dataDevolvidaCerta);
+            double multa = calcularMulta(emprestimoEncontrado.getPrecoEmprestimo(), diasAtraso);
 
-        if (diasEfetivo > diasPrevisto) {
-            int diasAtraso = (int) (diasEfetivo - diasPrevisto);
-            Atraso atraso = Atraso.criarAtraso(emprestimoEncontrado.getCliente(), produtosEntreguesComAtraso,
-                    diasAtraso, calcularMulta(emprestimoEncontrado.getPrecoEmprestimo(), diasAtraso));
+            Atraso atraso = Atraso.criarAtraso(
+                    emprestimoEncontrado.getCliente(),
+                    produtosEntreguesComAtraso,
+                    diasAtraso,
+                    multa);
             adicionarAtraso(atraso);
-
         }
 
         if (emprestimoEncontrado.getProdutosEmprestados().isEmpty()) {
@@ -305,6 +319,7 @@ public class LocadoraController {
         }
 
         return true;
+
     }
 
     public boolean cadastrarCliente(String nome, String email, String endereco, long cpf, long numero,
@@ -323,15 +338,16 @@ public class LocadoraController {
                 .findFirst()
                 .orElse(null);
     }
-    public boolean clientePossuiEmprestimo(Long cpf){
+
+    public boolean clientePossuiEmprestimo(Long cpf) {
         Cliente cliente = acharCliente(cpf);
         if (cliente.getProdutosAlugados().isEmpty()) {
             return false;
         }
         return true;
-          
-        
+
     }
+
     public Produto procurarProdutoPorCodigo(int codigo) {
         return produtos.stream()
                 .filter(p -> p.getCodigo() == codigo)
@@ -340,6 +356,7 @@ public class LocadoraController {
     }
 
     public boolean verificarCodigo(int codigo, List<Produto> carrinho) {
+
         for (Produto produtoCarrinho : carrinho) {
             if (produtoCarrinho.getCodigo() == codigo) {
                 return false;
@@ -353,4 +370,12 @@ public class LocadoraController {
         }
         return false;
     }
+    public void salvar() throws IOException{
+        ClientesDAO.salvar(clientes);
+    }
+
+    public static List<Cliente> carregar() throws IOException, ClassNotFoundException{
+        return ClientesDAO.carregar();
+    }
+    
 }

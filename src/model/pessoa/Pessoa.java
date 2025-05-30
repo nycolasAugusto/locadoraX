@@ -1,8 +1,9 @@
 package model.pessoa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable{
 
     protected String nome, email, endereco;
     protected long cpf, numero;

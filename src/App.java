@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,18 @@ import view.funcionario.GerenciarTransacoes;
 public class App {
     public static void main(String[] args) throws Exception {
         
-         
         List<Produto> listaDeProdutos = new ArrayList<>();
         List<Cliente> listaDeClientes = new ArrayList<>();
         List<Emprestimo> listaDeEmprestimos = new ArrayList<>();
         List<Atraso> listaDeAtrasos = new ArrayList<>();
         List<Compra> listaDeCompras = new ArrayList<>();
-
+        try {
+            listaDeClientes = LocadoraController.carregar();    
+        } catch (IOException e) {
+            System.err.println("Arquivo não encontrado " + e.getMessage());
+        }catch (ClassNotFoundException e){
+            System.err.println("Arquivo corrompido");
+        }
         
         LocadoraController controller = new LocadoraController(
             listaDeProdutos,
@@ -30,8 +36,8 @@ public class App {
             listaDeEmprestimos,
             listaDeAtrasos,
             listaDeCompras
-        );
-          
+            );
+            
         Scanner scanner = new Scanner(System.in);
         int opcaoPrincipal;
 
@@ -125,6 +131,14 @@ public class App {
                     break;
                 case 0:
                     System.out.println("Obrigado por utilizar a Locadora Central! Até mais.");
+                    try{
+                        controller.salvar();
+                        System.out.println("Dados salvos com sucesso!");
+                        System.out.println("Encerrando o sistema");
+                    }catch(IOException e){
+                        System.out.println("Erro ao salvar Arquivo");
+                        System.err.println(e.getMessage());
+                    }
                     break;
                 default:
                     System.out.println("Opção inválida. Por favor, tente novamente.");

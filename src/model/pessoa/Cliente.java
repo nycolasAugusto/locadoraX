@@ -1,5 +1,6 @@
 package model.pessoa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 import model.transacoes.Compra;
 import model.transacoes.Emprestimo;
 
-public final class Cliente extends Pessoa {
+public final class Cliente extends Pessoa implements Serializable {
     private List<Compra> compras;
     private List<Emprestimo> produtosAlugados;
     private double multaApagar;
