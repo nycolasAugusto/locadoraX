@@ -267,7 +267,7 @@ public class LocadoraController {
 
         Emprestimo emprestimoEncontrado = null;
 
-        // Buscar empréstimo ativo do cliente
+        
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getCliente().getCpf() == cpf) {
                 emprestimoEncontrado = emprestimo;
@@ -276,7 +276,7 @@ public class LocadoraController {
         }
 
         if (emprestimoEncontrado == null) {
-            return false; // Nenhum empréstimo encontrado
+            return false; 
         }
 
         List<Produto> produtosParaRemover = new ArrayList<>();
@@ -319,6 +319,21 @@ public class LocadoraController {
         }
 
         return true;
+
+    }
+    public Emprestimo localizarEmprestimo(Long cpf) {
+        for (Emprestimo e : emprestimos) {
+            if (e.getCliente().getCpf() == cpf) {
+                return e;
+            }
+        }
+        return null;
+    }
+    public void alterarDataDevolucao(Long cpf , String dataNova ){
+        
+        LocalDate dataNovaLocalDate = dataStringParaLocaLDate(dataNova);
+        Emprestimo emprestimo = localizarEmprestimo(cpf);
+        emprestimo.setDataDevolucao(dataNovaLocalDate);
 
     }
 
