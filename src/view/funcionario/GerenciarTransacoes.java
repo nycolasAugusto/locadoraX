@@ -1,13 +1,11 @@
 package view.funcionario;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import controller.LocadoraController;
 import model.produtos.produtosUtil.Produto;
-import model.transacoes.Emprestimo;
+
 
 public abstract class GerenciarTransacoes {
     public static void gerenciarTransacoes(LocadoraController controller, Scanner scanner) {

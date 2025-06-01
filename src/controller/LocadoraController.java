@@ -1,15 +1,16 @@
 package controller;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import dal.AtrasoDAO;
 import dal.ClientesDAO;
+import dal.CompraDAO;
+import dal.EmprestimosDAO;
+import dal.ProdutosDAO;
 import model.pessoa.Cliente;
 import model.produtos.Filme;
 import model.produtos.Jogo;
@@ -38,6 +39,12 @@ public class LocadoraController {
         this.atrasos = atrasos;
         this.compras = compras;
     }
+
+    
+    public List<Atraso> getAtrasos() {
+        return atrasos;
+    }
+
 
     public void adicionarProduto(Produto produto) {
         produtos.add(produto);
@@ -160,6 +167,12 @@ public class LocadoraController {
                 .toList();
     }
 
+    public List<String> listarCompras() {
+        return compras.stream()
+                .map(p -> p.toString() + "\n")
+                .toList();
+    }
+
     public List<String> listarEmprestimo() {
         return emprestimos.stream()
                 .map(p -> p.toString())
@@ -262,18 +275,13 @@ public class LocadoraController {
         return multa;
     }
 
-    public boolean devolverProdutos(Long cpf, String dataDevolvida, List<Integer> codigosParaDevolver) {
+    public boolean devolverProdutos(Long cpf, String dataDevolvida, List<Integer> codigosParaDevolver){
         LocalDate dataDevolvidaCerta = dataStringParaLocaLDate(dataDevolvida.trim());
 
-        Emprestimo emprestimoEncontrado = null;
-
-        
-        for (Emprestimo emprestimo : emprestimos) {
-            if (emprestimo.getCliente().getCpf() == cpf) {
-                emprestimoEncontrado = emprestimo;
-                break;
-            }
-        }
+        Emprestimo emprestimoEncontrado = emprestimos.stream()
+                            .filter(e -> e.getCliente().getCpf() == cpf)
+                            .findFirst()
+                            .orElse(null);
 
         if (emprestimoEncontrado == null) {
             return false; 
@@ -385,12 +393,31 @@ public class LocadoraController {
         }
         return false;
     }
-    public void salvar() throws IOException{
+    
+    public static void salvar(List<Cliente> clientes,List<Atraso> atrasos,List<Compra> compras,
+    List<Emprestimo> emprestimos,List<Produto> produtos) throws IOException{
         ClientesDAO.salvar(clientes);
+        AtrasoDAO.salvar(atrasos);
+        CompraDAO.salvar(compras);
+        EmprestimosDAO.salvar(emprestimos);
+        ProdutosDAO.salvar(produtos);
     }
 
-    public static List<Cliente> carregar() throws IOException, ClassNotFoundException{
+    public static List<Cliente> carregarClientes() throws IOException, ClassNotFoundException{
         return ClientesDAO.carregar();
     }
+    public static List<Atraso> carregarAtrasos() throws IOException, ClassNotFoundException{
+        return AtrasoDAO.carregar();
+    }
+    public static List<Compra> carregarCompras() throws IOException, ClassNotFoundException{
+        return CompraDAO.carregar();
+    }
+    public static List<Emprestimo> carregarEmprestimos() throws IOException, ClassNotFoundException{
+        return EmprestimosDAO.carregar();
+    }
+    public static List<Produto> carregarProdutos() throws IOException, ClassNotFoundException{
+        return ProdutosDAO.carregar();
+    }
+
     
 }

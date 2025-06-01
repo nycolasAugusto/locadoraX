@@ -1,12 +1,13 @@
 package model.transacoes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 import model.pessoa.Cliente;
 import model.produtos.produtosUtil.Produto;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable{
 
     private List<Produto> produtosEmprestados;
     private Cliente cliente;

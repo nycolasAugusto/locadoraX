@@ -1,19 +1,19 @@
+Produto cria, altera, lista e remover
+Cliente tb 
+emprestimo, cria altea(Data de devolucao && pode devolver apenas parcela) e remover
+CRUDS ok
+--------------
+Da para criar uma senha para acessar a area do funcionario 
+ai qualquer usuario consegue acessar a do cliente, e ver o catalogos de listagens 
 
 --------------
 
-TEM QUER TER 3 CRUD criar alterar remover e listagem ----- cliente e produtos , EMPRESTIMO ? , nao sei se entra como crud , pois na ha alteracao 
-2 precisam ter relacao entre si ----- cliente com produtos, emprestimo com cliente e produtos 
+1 Atraso arrumar que nao esta funcionado,
+Quando for devolver os produtos, mostra os codigos e os produtos do emprestimo do cliente, para saber quais ele vai devolver
+depois disso quando ele devolver uma parcela, mostrar os restantes a devolever
 
---------------
+2 criar logs de erro
 
+3 fazer as verificacoes Exceptions 
 
-
-    5 listagens fazer de tudo = compras de usuario, produtos por codigo, produtos mais emprestados, mais emprestados por tipo, atrasos por valor da multa, por mais dias de atraso 
-    tb ver coisas que nao precisa listar em certos lugares EX: nao precisa mostrar o estoque quando cria o mostra carrinho !
-    fazer dois tipos de listagem, uma apenas com [nome, codigo, os 3 utils , e o atributo pessoal do produto] - e outra com [TUDO...estoque, vezez emprestado, etc]
-
-6 fazer as verificacoes Exceptions 
-7 fazer os aquivos TXT com banco de dados
-
-
-8 Criar validação para não poder cadastrar um usuário com um cpf igual
+4 Criar validação para não poder cadastrar um usuário com um cpf igual

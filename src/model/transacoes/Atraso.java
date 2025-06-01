@@ -1,11 +1,12 @@
 package model.transacoes;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.pessoa.Cliente;
 import model.produtos.produtosUtil.Produto;
 
-public class Atraso {
+public class Atraso  implements Serializable{
     
     private Cliente cliente ;
     private List<Produto> produtosEntreguesComAtraso;

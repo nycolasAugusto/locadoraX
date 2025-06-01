@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.pessoa.Cliente;
 
 public abstract class ClientesDAO  {
@@ -25,7 +24,7 @@ public abstract class ClientesDAO  {
         }
     }
 
-      @SuppressWarnings("unchecked")
+     @SuppressWarnings("unchecked")
     public static List<Cliente> carregar() throws IOException, ClassNotFoundException{
         File arquivo = new File(CAMINHO + "/clientes.ser");
         if(!arquivo.exists()) return new ArrayList<Cliente>();
@@ -35,6 +34,8 @@ public abstract class ClientesDAO  {
         }
     }
 
+  
+ 
 
 
 

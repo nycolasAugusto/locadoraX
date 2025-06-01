@@ -1,6 +1,6 @@
 package model.produtos.produtosUtil;
 
-public enum Categoria {
+public enum Categoria  {
     ROMANCE("Romance"),
     ACAO("Acao"),
     COMEDIA("Comedia"),

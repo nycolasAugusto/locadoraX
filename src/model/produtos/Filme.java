@@ -8,7 +8,7 @@ import model.produtos.produtosUtil.Classificacao;
 
 import model.produtos.produtosUtil.Produto;
 
-public class Filme extends Produto {
+public class Filme extends Produto  {
     private int duracaoMinutos;
 
     private Filme(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,

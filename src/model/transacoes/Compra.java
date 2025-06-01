@@ -1,10 +1,11 @@
 package model.transacoes;
+import java.io.Serializable;
 import java.util.List;
 
 import model.pessoa.Cliente;
 import model.produtos.produtosUtil.Produto;
 
-public class Compra {
+public class Compra implements Serializable{
     
     private List<Produto> produtosComprados;
     private Cliente cliente;
@@ -38,10 +39,22 @@ public class Compra {
     public void setPrecoCompra(double precoCompra) {
         this.precoCompra = precoCompra;
     }
+    private String mostraApenasNomeProduto(List<Produto> lista){
+        String resultado = "";
+        for (Produto produto : lista) {
+            resultado += produto.getNome();
+        } 
+        return resultado;
+    }
+
+    @Override
+    public String toString() {
+        return "#" + cliente.getNome() + " [produtosComprados=" + mostraApenasNomeProduto(produtosComprados) ;
+    }
 
     
 
-
+    
 
 
 

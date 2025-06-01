@@ -15,20 +15,23 @@ import view.funcionario.GerenciarProdutos;
 import view.funcionario.GerenciarTransacoes;
 public class App {
     public static void main(String[] args) throws Exception {
-        
         List<Produto> listaDeProdutos = new ArrayList<>();
         List<Cliente> listaDeClientes = new ArrayList<>();
         List<Emprestimo> listaDeEmprestimos = new ArrayList<>();
         List<Atraso> listaDeAtrasos = new ArrayList<>();
         List<Compra> listaDeCompras = new ArrayList<>();
         try {
-            listaDeClientes = LocadoraController.carregar();    
+            listaDeClientes = LocadoraController.carregarClientes();   
+            listaDeProdutos =   LocadoraController.carregarProdutos(); 
+            listaDeEmprestimos =  LocadoraController.carregarEmprestimos(); 
+            listaDeAtrasos =  LocadoraController.carregarAtrasos(); 
+            listaDeCompras =  LocadoraController.carregarCompras(); 
+            System.out.println("Dados baixados com sucesso"); 
         } catch (IOException e) {
             System.err.println("Arquivo não encontrado " + e.getMessage());
         }catch (ClassNotFoundException e){
             System.err.println("Arquivo corrompido");
         }
-        
         LocadoraController controller = new LocadoraController(
             listaDeProdutos,
             listaDeClientes,
@@ -37,11 +40,14 @@ public class App {
             listaDeCompras
             );
             
-        Scanner scanner = new Scanner(System.in);
-        int opcaoPrincipal;
-
-        do {
+            
+            Scanner scanner = new Scanner(System.in);
+            int opcaoPrincipal;
+            
+            
+            do {
             System.out.println("\n--- Bem-vindo à Locadora Central! ---");
+            System.out.println(controller.getAtrasos());
             System.out.println("1. Área do Cliente");
             System.out.println("2. Área do Funcionário");
             System.out.println("0. Sair");
@@ -55,9 +61,9 @@ public class App {
                     int opcaoCliente;
                     do {
                         System.out.println("\n--- Área do Cliente ---");
-                        System.out.println("1. Ver Catálogo de Filmes");
-                        System.out.println("2. Ver Catálogo de Séries");
-                        System.out.println("3. Ver Catálogo de Jogos");
+                        System.out.println("1. Ver Catálogo");
+                        //colocar por classificacao
+                        System.out.println("2. Pesquisar Produto");// nome, categorias, classes, mais procurados !!!!
                         System.out.println("4. Meus Aluguéis Ativos");
                         System.out.println("5. Histórico de Compras");
                         System.out.println("0. Voltar ao Menu Principal");
@@ -131,7 +137,7 @@ public class App {
                 case 0:
                     System.out.println("Obrigado por utilizar a Locadora Central! Até mais.");
                     try{
-                        controller.salvar();
+                        LocadoraController.salvar(listaDeClientes,listaDeAtrasos, listaDeCompras ,listaDeEmprestimos , listaDeProdutos );
                         System.out.println("Dados salvos com sucesso!");
                         System.out.println("Encerrando o sistema");
                     }catch(IOException e){

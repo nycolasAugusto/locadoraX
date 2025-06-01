@@ -16,7 +16,7 @@ public abstract class ConsultarListagens {
         System.out.println("3 - Listar todos os produtos");
         System.out.println("4 - Listar produtos por tipo");
         System.out.println("5 - Listar atrasos");
-        System.out.println("6 - Listar Emprestimos");
+        System.out.println("6 - Listar Compras");
         System.out.println("0 - Voltar");
         System.out.print("Escolha uma opção: ");
 
@@ -89,8 +89,8 @@ public abstract class ConsultarListagens {
                 break;
 
             case 6:
-                System.out.println("-> Listando todos os empréstimos...");
-                controller.listarEmprestimo().forEach(System.out::println);
+                System.out.println("-> Listando todos os Compras...");
+                controller.listarCompras().forEach(System.out::println);
                 break;
 
             case 0:
