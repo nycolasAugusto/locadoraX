@@ -1,5 +1,6 @@
 package view.funcionario;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -64,15 +65,41 @@ public abstract class GerenciarTransacoes {
                         System.out.println("1 - SIM\n2 - Nao");
                         int confirmar = scanner.nextInt();
                         if (confirmar == 1) {
-                            controller.emprestarProdutos(carrinhoUsuario, cpf,
-                                    controller.dataStringParaLocaLDate(dataE));
-                            System.out.println("Emprestimo realizado !");
-                            break;
-                        } else if (confirmar == 2) {
-                            System.out.println("Carrinho excluido, o");
-                            carrinhoUsuario.removeAll(carrinhoUsuario);
-                            break;
-                        }
+												LocalDate dataEmprestimo = controller.dataStringParaLocaLDate(dataE);
+												LocalDate dataDevolucaoPadrao = dataEmprestimo.plusDays(7);
+												LocalDate dataDevolucaoFinal = dataDevolucaoPadrao;
+												double valorExtra = 0.0;
+
+												System.out.println("Deseja aumentar o prazo de devolução? (1 - Sim / 2 - Não)");
+												int aumentarPrazo = scanner.nextInt();
+
+												if (aumentarPrazo == 1) {
+														System.out.println("Quantos dias extras deseja (máximo 10)?");
+														int diasExtras = scanner.nextInt();
+														if (diasExtras > 0 && diasExtras <= 10) {
+															double valorEmprestimo = controller.calcularValorCompre(carrinhoUsuario);
+																valorExtra = valorEmprestimo * 0.025 * diasExtras;
+																dataDevolucaoFinal = dataDevolucaoPadrao.plusDays(diasExtras);
+																System.out.printf("Será cobrado um valor extra de R$ %.2f pelo prazo adicional de %d dias.%n", valorExtra, diasExtras);
+																System.out.println("Deseja confirmar mesmo assim? (1 - Sim / 2 - Não)");
+																int confirmaExtra = scanner.nextInt();																if (confirmaExtra != 1) {
+																	System.out.println("Prazo extra cancelado. Empréstimo não realizado.");
+																	break;
+															}
+														} else {
+																System.out.println("Quantidade de dias inválida. Empréstimo não realizado.");
+																break;
+														}
+													}
+  
+
+																		controller.emprestarProdutos(carrinhoUsuario, cpf, dataEmprestimo);
+																		System.out.println("Empréstimo realizado!");
+																		if (valorExtra > 0) {
+																				System.out.printf("Valor extra cobrado: R$ %.2f%n", valorExtra);
+																		}
+																		break;
+																}
 
                     }
 

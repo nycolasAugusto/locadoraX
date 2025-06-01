@@ -16,3 +16,4 @@ TEM QUER TER 3 CRUD criar alterar remover e listagem ----- cliente e produtos , 
 7 fazer os aquivos TXT com banco de dados
 
 
+8 Criar validação para não poder cadastrar um usuário com um cpf igual
