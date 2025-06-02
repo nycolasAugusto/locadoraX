@@ -1,17 +1,23 @@
 package view.funcionario;
+
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.zip.DataFormatException;
+
 import controller.LocadoraController;
 import model.produtos.produtosUtil.Produto;
-
+import model.transacoes.Emprestimo;
 
 public abstract class GerenciarTransacoes {
     public static void gerenciarTransacoes(LocadoraController controller, Scanner scanner) {
 
         List<Produto> carrinhoUsuario = new ArrayList<>();
         Long cpf;
+        LocalDate dataDevolucao = null;
         int opcaoTransacoes = 0;
         int codigoProduto = 0;
         System.out.println("1 - Realizar Emprestimo ");
@@ -26,13 +32,14 @@ public abstract class GerenciarTransacoes {
                     case 1:
                         System.out.println("Digite seu cpf !!");
                         cpf = scanner.nextLong();
-                        scanner.nextLine(); 
+                        scanner.nextLine();
                         while (!controller.cpfValido(cpf) && cpf != 0) {
                             System.out.println("Usuário não cadastrado ou usuário com empréstimo ativo.");
                             System.out
                                     .println("Digite o CPF correto, ou digite 0 para retornar ao menu de TRANSAÇÕES.");
                             cpf = scanner.nextLong();
-                            
+                            scanner.nextLine();
+
                         }
 
                         if (cpf == 0) {
@@ -41,13 +48,19 @@ public abstract class GerenciarTransacoes {
                         }
                         System.out.println("Digite a data de emprestimo :");
                         String dataE = scanner.nextLine();
-
+                        try {
+                            dataDevolucao = controller.dataStringParaLocaLDate(dataE).plusDays(7);
+                        } catch (Exception e) {
+                            System.err.println("Data fora de formato " + e.getMessage() + "Data :" + LocalDate.now()
+                                    + " Hora :" + LocalTime.now());
+                            break;
+                        }
                         do {
                             System.out
                                     .println(
                                             "Digite o código do produto que deseja adicionar ao carrinho ( 0 para finalizar):");
                             codigoProduto = scanner.nextInt();
-                           
+
                             if (codigoProduto == 0) {
                                 if (carrinhoUsuario.isEmpty()) {
                                     System.out.println("Carrinho Vazio !!!");
@@ -60,28 +73,32 @@ public abstract class GerenciarTransacoes {
                                         .println("Valor Total da Compra : "
                                                 + controller.calcularValorCompre(carrinhoUsuario));
 
-                                System.out.println("Deseja confirmar compra? (1 - Sim / 2 - Não)"); 
-                                                                                                    
-                                                                                                   
                                 System.out.println("Data De emprestimo : " + dataE + " até "
-                                        + controller.dataStringParaLocaLDate(dataE).plusDays(7));
+                                        + dataDevolucao);
                                 System.out.println(
                                         "Caso nao devolva ate a data determinada sera cobrado 5% de multa por dia de atraso !!");
                                 System.out.println("Deseja confirmar o emprestimo ? ");
                                 System.out.println("1 - SIM\n2 - Nao");
                                 int confirmar = scanner.nextInt();
-                                
-                                if (confirmar == 1) {
-                                    LocalDate dataEmprestimo = controller.dataStringParaLocaLDate(dataE);
-                             
 
-                                    controller.emprestarProdutos(carrinhoUsuario, cpf, dataEmprestimo);
+                                if (confirmar == 1) {
+
+                                    try {
+                                        LocalDate dataEmprestimo = controller.dataStringParaLocaLDate(dataE);
+                                        controller.emprestarProdutos(carrinhoUsuario, cpf, dataEmprestimo);
+                                    } catch (DataFormatException e) {
+                                        System.err.println("Emprestimo nao Efetuado " + e.getMessage() + "Data :"
+                                                + LocalDate.now() + " Hora :" + LocalTime.now());
+                                        break;
+                                    }catch(IOException e){
+                                        System.err.println("Emprestimo criado erroneamente "+ e.getMessage() + "Data :"
+                                        + LocalDate.now() + " Hora :" + LocalTime.now());
+                                    }
                                     System.out.println("Empréstimo realizado!");
-                                    
 
                                     break;
                                 }
-                          
+
                             }
 
                             if (controller.verificarCodigo(codigoProduto, carrinhoUsuario)) {
@@ -99,7 +116,7 @@ public abstract class GerenciarTransacoes {
 
                         } while (codigoProduto != 0);
 
-                        break; 
+                        break;
                 }
                 break;
 
@@ -155,16 +172,32 @@ public abstract class GerenciarTransacoes {
 
                 break;
             case 3:
-                System.out.println("Digite seu Cpf para localizarmos o emprestimo !");
+                System.out.println("Digite seu CPF para localizarmos o empréstimo:");
                 long cpfProrrogar = scanner.nextLong();
                 scanner.nextLine();
-                System.out.println();
-                if (controller.localizarEmprestimo(cpfProrrogar) != null){
-                    System.out.println("Digite a nova data de devolucao :");
-                    String dataNova = scanner.nextLine();
-                    controller.alterarDataDevolucao(cpfProrrogar, dataNova);
-                }else{
-                    System.out.println("Emprestimo nao Localizado");
+
+                Emprestimo emprestimo = controller.localizarEmprestimo(cpfProrrogar);
+                if (emprestimo != null) {
+                    System.out.println("Digite a nova data de devolução:");
+                    String dataNovaString = scanner.nextLine();
+
+                    try {
+                        LocalDate dataNova = controller.dataStringParaLocaLDate(dataNovaString);
+                        LocalDate dataEmprestimo = emprestimo.getDataEmprestimo();
+
+                        if (!dataNova.isAfter(dataEmprestimo)) {
+                            System.out.println("A nova data de devolução deve ser posterior à data do empréstimo ("
+                                    + dataEmprestimo + ").");
+                            break;
+                        }
+
+                        controller.alterarDataDevolucao(cpfProrrogar, dataNovaString);
+                    } catch (Exception e) {
+                        System.err.println("Data inválida: " + e.getMessage());
+                    }
+
+                } else {
+                    System.out.println("Empréstimo não localizado.");
                 }
                 break;
             case 4:

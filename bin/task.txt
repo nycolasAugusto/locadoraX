@@ -8,11 +8,27 @@ ai qualquer usuario consegue acessar a do cliente, e ver o catalogos de listagen
 
 --------------
 
-1 Atraso arrumar que nao esta funcionado,
+0000000
+Listagens : 
+    Produto:
+            na area do funcionario , mostra apenas CODIGO - NOME - CLASSIFICACAO -CLASSE - ESTOQUE
+            na area do cliente :     mostrar       CODIGO - NOME - CATEGORIA - CLASSIFICACAO - VEZESEMPRESTADO
+    Cliente :
+         NOME - CPF - TEM EMPRESTIMO ATIVO - LISTA DE [NOMES] DE COMPRAS
+    EMPRESTIMO :
+        NOME USER - NOME LIVROS - DATA EMP - DATA devolucao
+    COMPRAS : 
+        NOME USER - NOME LIVROS - DATA - PRECO TOTAL 
+    ATRASOS: 
+        NOME USER - NOMES LIVROS - DIAS ATRASO.
+
+
+1 Atraso 
 Quando for devolver os produtos, mostra os codigos e os produtos do emprestimo do cliente, para saber quais ele vai devolver
 depois disso quando ele devolver uma parcela, mostrar os restantes a devolever
 
-2 criar logs de erro
+2 criar logs de erro, feito -- falta apenas colocar os System err nos catch dos try catch!! Melhorar verificacoes de status
+-----logs antigos estao sendo apagados quando inicia o sistema por uma segunda vez
 
 3 fazer as verificacoes Exceptions 
 
