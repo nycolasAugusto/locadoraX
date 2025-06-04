@@ -71,11 +71,13 @@ public class Emprestimo implements Serializable{
         return resultado;
     }
     
-    @Override
-    public String toString() {
-        return "Emprestimo [produtosEmprestados=" + mostraApenasNomeProduto(produtosEmprestados) + ", cliente=" + cliente.getNome() + ", dataEmprestimo="
-                + dataEmprestimo + ", dataDevolucao=" + dataDevolucao + ", precoEmprestimo=" + precoEmprestimo + "]";
-    }
+		@Override
+			public String toString() {
+					return cliente.getNome() + " - " +
+								mostraApenasNomeProduto(produtosEmprestados) + " - " +
+								dataEmprestimo + " - " +
+								dataDevolucao;
+			}
     
     
     

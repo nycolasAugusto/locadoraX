@@ -62,7 +62,7 @@ public class App {
 
             switch (opcaoPrincipal) {
                 case 1:
-                    ClienteView.viewCliente(controller, scanner);
+                		ClienteView.menuCliente(controller, scanner);
                     break;
                 case 2:
                     int opcaoFuncionario;

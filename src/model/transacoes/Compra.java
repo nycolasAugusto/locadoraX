@@ -47,16 +47,12 @@ public class Compra implements Serializable{
         return resultado;
     }
 
-    @Override
-    public String toString() {
-        return "#" + cliente.getNome() + " [produtosComprados=" + mostraApenasNomeProduto(produtosComprados) ;
-    }
+ 		@Override
+		public String toString() {
+				return cliente.getNome() + " - " +
+							mostraApenasNomeProduto(produtosComprados) + " - " +
+							(produtosComprados.isEmpty() ? "Sem data" : produtosComprados.get(0).getDataCadastro()) + " - " +
+							precoCompra;
+		}
 
-    
-
-    
-
-
-
-    
 }

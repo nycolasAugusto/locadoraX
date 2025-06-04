@@ -443,4 +443,8 @@ public class LocadoraController {
     public void alterarCategoria(Produto produto , String novaCategoria){
         produto.setCategoria(Categoria.getCategoria(novaCategoria));
     }
+
+		public List<Produto> getProdutos() {
+    	return produtos;
+		}
 }

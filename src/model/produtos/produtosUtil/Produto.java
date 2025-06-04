@@ -100,9 +100,21 @@ public abstract class Produto implements Serializable {
 
     
 
-    
+    public String exibirInfoFuncionario() {
+    return "CODIGO: " + codigo +
+           " - NOME: " + nome +
+           " - CLASSIFICACAO: " + classificacaoIndicativa +
+           " - CLASSE: " + classe +
+           " - ESTOQUE: " + quantidadeEstoque;
+    }
 
-    
+    public String exibirInfoCliente() {
+    return "CODIGO: " + codigo +
+           " - NOME: " + nome +
+           " - CATEGORIA: " + categoria +
+           " - CLASSIFICACAO: " + classificacaoIndicativa +
+           " - VEZESEMPRESTADO: " + vezesEmprestado;
+    }
 
 
 }

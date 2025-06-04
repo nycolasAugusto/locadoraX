@@ -94,10 +94,17 @@ public abstract class GerenciarProdutos {
                             estoqueJogo, categoriaJogo, classeJogo,
                             classificacaoJogo, plataformaJogo);
                     System.out.println(jogoCadastrado ? "Jogo cadastrado com sucesso!" : "Falha ao cadastrar jogo.");
-                    break;
-                case 4:
-                    System.out.println(controller.listarTodosProdutos());
-                    break;
+											break;
+						case 4:
+					System.out.println("\n--- Lista de Todos os Produtos (Funcionário) ---");
+					if (controller.getProdutos().isEmpty()) {
+							System.out.println("Não há nenhum produto cadastrado.");
+					} else {
+							for (Produto produto : controller.getProdutos()) {
+									System.out.println(produto.exibirInfoFuncionario());
+							}
+					}
+					break;	
                 case 5:
                     System.out.println("Digite o código do produto:");
                     int codigoProduto = scanner.nextInt();

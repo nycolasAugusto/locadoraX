@@ -1,1 +1,6 @@
-Classe nao encontradanull2025-06-0123:17:43.083093200
+Arquivo não encontrado model.produtos.produtosUtil.Produto; local class incompatible: stream classdesc serialVersionUID = 880787948130093776, local class serialVersionUID = -5553291762937777401Data :2025-06-03 Hora :22:09:56.983210700
+Exception in thread "main" java.util.NoSuchElementException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1486)
+	at view.funcionario.ConsultarListagens.consultarListagens(ConsultarListagens.java:25)
+	at App.main(App.java:92)

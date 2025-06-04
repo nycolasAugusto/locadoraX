@@ -2,6 +2,7 @@ package view.cliente;
 
 import java.util.Scanner;
 import controller.LocadoraController;
+import model.produtos.produtosUtil.Produto;
 
 public class ClienteView {
 
@@ -33,7 +34,13 @@ public class ClienteView {
                         switch (opcaoExplorar) {
                             case 1:
                                 System.out.println("\n--- Catálogo Completo ---");
-                                System.out.println("Chamada para controller.listarCatalogoCompleto() comentada.");
+                                if (controller.getProdutos().isEmpty()) {
+                                    System.out.println("Não há nenhum produto cadastrado.");
+                                } else {
+                                    for (Produto produto : controller.getProdutos()) {
+                                        System.out.println(produto.exibirInfoCliente());
+                                    }
+                                }
                                 break;
                             case 2:
                                 System.out.println("\n--- Listar por Categoria ---");

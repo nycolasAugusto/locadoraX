@@ -66,8 +66,18 @@ public class Atraso  implements Serializable{
     }
 
 
-    
-
-
+    @Override
+	public String toString() {
+    String nomesProdutos = "";
+    boolean primeiro = true;
+    for (Produto produto : produtosEntreguesComAtraso) {
+        if (!primeiro) {
+            nomesProdutos += ", ";
+        }
+        nomesProdutos += produto.getNome();
+        primeiro = false;
+    }
+     return cliente.getNome() + " - " + nomesProdutos + " - " + diasAtrasado + " dias de atraso.";
+	}
 
 }
