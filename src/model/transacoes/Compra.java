@@ -2,10 +2,11 @@ package model.transacoes;
 import java.io.Serializable;
 import java.util.List;
 
+import model.Ilocadora;
 import model.pessoa.Cliente;
 import model.produtos.produtosUtil.Produto;
 
-public class Compra implements Serializable{
+public class Compra implements Serializable, Ilocadora{
     
     private List<Produto> produtosComprados;
     private Cliente cliente;
@@ -39,20 +40,28 @@ public class Compra implements Serializable{
     public void setPrecoCompra(double precoCompra) {
         this.precoCompra = precoCompra;
     }
-    private String mostraApenasNomeProduto(List<Produto> lista){
+    public String mostraApenasNomeProduto(List<Produto> lista){
         String resultado = "";
         for (Produto produto : lista) {
-            resultado += produto.getNome();
+            resultado += produto.getNome()+ " ";
         } 
+      
         return resultado;
     }
+    
 
- 		@Override
-		public String toString() {
-				return cliente.getNome() + " - " +
-							mostraApenasNomeProduto(produtosComprados) + " - " +
-							(produtosComprados.isEmpty() ? "Sem data" : produtosComprados.get(0).getDataCadastro()) + " - " +
-							precoCompra;
-		}
+ 	@Override
+    public String listagemFormal() {   
+        return cliente.getNome() + " "  + precoCompra + "["+ mostraApenasNomeProduto(produtosComprados)+"]";
+    }
+
+        @Override
+        public String toString() {
+            return "Compra [produtosComprados=" + produtosComprados + ", cliente=" + cliente + ", precoCompra="
+                    + precoCompra + "]";
+        }
+
+
+    
 
 }

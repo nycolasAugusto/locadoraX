@@ -12,7 +12,7 @@ public class ClienteView {
             System.out.println("\n--- Área do Cliente ---");
             System.out.println("1. Explorar Catálogo de Produtos");
             System.out.println("2. Meus Aluguéis Ativos"); 
-            System.out.println("3. Meu Histórico de Aluguéis");
+            System.out.println("3. Minhas Compras");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.print("Escolha uma opção: ");
             opcaoCliente = scanner.nextInt();
@@ -29,7 +29,7 @@ public class ClienteView {
                         System.out.print("Escolha uma opção: ");
 
                         opcaoExplorar = scanner.nextInt();
-                        scanner.nextLine(); // Consome a nova linha
+                        scanner.nextLine(); 
 
                         switch (opcaoExplorar) {
                             case 1:

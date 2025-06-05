@@ -150,13 +150,13 @@ public class LocadoraController {
 
     public List<String> listarAtrasos() {
         return atrasos.stream()
-                .map(atraso -> atraso.toString() + "\n")
+                .map(atraso -> atraso.listagemFormal() + "\n")
                 .toList();
     }
 
     public List<String> listarUsuarios() {
         return clientes.stream()
-                .map(cliente -> cliente.toString() + "\n")
+                .map(cliente -> cliente.listagemFormal() + "\n")
                 .toList();
     }
 
@@ -169,13 +169,13 @@ public class LocadoraController {
 
     public List<String> listarCompras() {
         return compras.stream()
-                .map(p -> p.toString() + "\n")
+                .map(p -> p.listagemFormal() + "\n")
                 .toList();
     }
 
     public List<String> listarEmprestimo() {
         return emprestimos.stream()
-                .map(p -> p.toString())
+                .map(p -> p.listagemFormal())
                 .toList();
     }
 

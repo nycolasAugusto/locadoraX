@@ -2,7 +2,8 @@ package model.produtos.produtosUtil;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Produto implements Serializable {
+
+public abstract class Produto implements Serializable  {
     protected String nome ;
     protected LocalDate dataCadastro;
     protected int quantidadeEstoque, vezesEmprestado, codigo;

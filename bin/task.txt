@@ -1,35 +1,24 @@
-Produto cria, altera, lista e remover
-Cliente tb 
-emprestimo, cria altea(Data de devolucao && pode devolver apenas parcela) e remover
-CRUDS ok
---------------
-Da para criar uma senha para acessar a area do funcionario 
-ai qualquer usuario consegue acessar a do cliente, e ver o catalogos de listagens 
+Ve se tu consegue fazer isso, 
 
---------------
+validar email, sem usar regex, so substring e index of  
 
-0000000
-Listagens : 
-    Produto:
-            na area do funcionario , mostra apenas CODIGO - NOME - CLASSIFICACAO -CLASSE - ESTOQUE
-            na area do cliente :     mostrar       CODIGO - NOME - CATEGORIA - CLASSIFICACAO - VEZESEMPRESTADO
-    Cliente :
-         NOME - CPF - TEM EMPRESTIMO ATIVO - LISTA DE [NOMES] DE COMPRAS
-    EMPRESTIMO :
-        NOME USER - NOME LIVROS - DATA EMP - DATA devolucao
-    COMPRAS : 
-        NOME USER - NOME LIVROS - DATA - PRECO TOTAL 
-    ATRASOS: 
-        NOME USER - NOMES LIVROS - DIAS ATRASO.
+Funcao de remover Cliente ---- cria ela no controller, e chama ela na view GerenciarCliente
+
+No gerenciar Transacoes, verificar se ele esta devolvendo os produtos em atraso, se nao nao mostrar nada 
+Se esta , mostrar qual o valor da multa que ele tem que pagar e dai pedir para confirmar 
+
+Fazer as funcoes dos cases do ClienteView, listar Produtos por categoria 
+listar os 10 mais populares,-- pra esse vai ter que usar Compareble to 
 
 
-1 Atraso 
-Quando for devolver os produtos, mostra os codigos e os produtos do emprestimo do cliente, para saber quais ele vai devolver
-depois disso quando ele devolver uma parcela, mostrar os restantes a devolever
+tenta nao spamar funcao da IA , pq senao vamo ter que arrumar na hora, pq um dos requisistos é o clean code 
 
-2 criar logs de erro, feito -- falta apenas colocar os System err nos catch dos try catch!! Melhorar verificacoes de status
------logs antigos estao sendo apagados quando inicia o sistema por uma segunda vez
 
-3 fazer as verificacoes Exceptions 
+tenta fazer isso que sexta vou ver com o professor, pq to com duvida em outras paradas 
+ai preciso da ajuda dele pra arrumar, faz isso ate sexta de noite , pq sabado vou mexer 
+e quero terminar ate no maximo terca
+ 
 
-4 Criar validação para não poder cadastrar um usuário com um cpf igual
+
+
+

@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import model.Ilocadora;
 import model.pessoa.Cliente;
 import model.produtos.produtosUtil.Produto;
 
-public class Emprestimo implements Serializable{
+public class Emprestimo implements Serializable, Ilocadora{
 
     private List<Produto> produtosEmprestados;
     private Cliente cliente;
@@ -63,7 +64,7 @@ public class Emprestimo implements Serializable{
     public void setPrecoEmprestimo(double precoEmprestimo) {
         this.precoEmprestimo = precoEmprestimo;
     }
-    private String mostraApenasNomeProduto(List<Produto> lista){
+    public String mostraApenasNomeProduto(List<Produto> lista){
         String resultado = "";
         for (Produto produto : lista) {
             resultado += produto.getNome();
@@ -71,7 +72,14 @@ public class Emprestimo implements Serializable{
         return resultado;
     }
     
+    
 		@Override
+    public String listagemFormal() {
+        
+        return cliente.getNome() + " [" + mostraApenasNomeProduto(produtosEmprestados) + "]";
+    }
+    
+        @Override
 			public String toString() {
 					return cliente.getNome() + " - " +
 								mostraApenasNomeProduto(produtosEmprestados) + " - " +

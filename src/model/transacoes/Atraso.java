@@ -3,10 +3,11 @@ package model.transacoes;
 import java.io.Serializable;
 import java.util.List;
 
+import model.Ilocadora;
 import model.pessoa.Cliente;
 import model.produtos.produtosUtil.Produto;
 
-public class Atraso  implements Serializable{
+public class Atraso  implements Serializable, Ilocadora{
     
     private Cliente cliente ;
     private List<Produto> produtosEntreguesComAtraso;
@@ -63,6 +64,13 @@ public class Atraso  implements Serializable{
     }
     public void setDiasAtrasado(int diasAtrasado) {
         this.diasAtrasado = diasAtrasado;
+    }
+
+    
+    @Override
+    public String listagemFormal() {
+
+        return cliente.getNome()  + " atrasou " + diasAtrasado + " dias " + "Multado em : " + multa + " reais";
     }
 
 

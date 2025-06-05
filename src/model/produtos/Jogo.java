@@ -29,12 +29,6 @@ public class Jogo extends Produto {
 
     
 
-    @Override
-    public String exibirInformacoesCruciais() {
-        return "Nome: " + nome + ", Categoria: " + categoria + ", Classe: " + classe + ", Plataforma : " + plataforma;
-    
-    }
-
      @Override
     public void vezesEmprestado() {
         vezesEmprestado += 1;
@@ -57,12 +51,17 @@ public class Jogo extends Produto {
     public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
+    
+       public String exibirInformacoesCruciais() {
+        return codigo + " - " + nome + ", classificação: " + classificacaoIndicativa + ", cadastro " + dataCadastro + 
+                ", classe: " + classe + ", estoque: " + quantidadeEstoque;
+    }
 
     @Override
     public String toString() {
-        return codigo + " - " + nome + ", " + dataCadastro + ", estoque: " + quantidadeEstoque +
-            ", categoria: " + categoria + ", classe: " + classe +
-            ", classificação: " + classificacaoIndicativa + ", plataforma: " + plataforma;
+        return codigo + "- " + nome + ", " +
+                ", categoria: " + categoria + ", classe: " + classe +
+                ", classificação: " + classificacaoIndicativa + ", plataforma: " + plataforma ;
     }
     
 

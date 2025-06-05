@@ -91,9 +91,6 @@ public class App {
                             case 4:
                                 ConsultarListagens.consultarListagens(controller, scanner);
                                 break;
-                            case 5:
-                                System.out.println("Registrar Compras (Vendas)");
-                                break;
                             case 0:
                                 System.out.println("Voltando ao Menu Principal...");
                                 break;

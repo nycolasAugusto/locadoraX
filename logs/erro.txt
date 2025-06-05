@@ -1,6 +1,3 @@
-Arquivo não encontrado model.produtos.produtosUtil.Produto; local class incompatible: stream classdesc serialVersionUID = 880787948130093776, local class serialVersionUID = -5553291762937777401Data :2025-06-03 Hora :22:09:56.983210700
-Exception in thread "main" java.util.NoSuchElementException
-	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
-	at java.base/java.util.Scanner.next(Scanner.java:1486)
-	at view.funcionario.ConsultarListagens.consultarListagens(ConsultarListagens.java:25)
-	at App.main(App.java:92)
+Arquivo não encontrado model.pessoa.Cliente; local class incompatible: stream classdesc serialVersionUID = -8585357543041919973, local class serialVersionUID = 8502953690046091164Data :2025-06-05 Hora :00:04:08.556338500
+Data fora de formato Text 'dasda' could not be parsed at index 0Data :2025-06-05 Hora :00:04:21.552469600
+Data fora de formato Text 'adada' could not be parsed at index 0Data :2025-06-05 Hora :00:04:50.976950200

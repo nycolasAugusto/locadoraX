@@ -1,18 +1,19 @@
 package view.funcionario;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 import controller.LocadoraController;
 
 public abstract class GerenciarCliente {
-    
 
-    public static void gerenciarCliente(LocadoraController controller , Scanner scanner){
+    public static void gerenciarCliente(LocadoraController controller, Scanner scanner) {
         System.out.println("Gerenciar Clientes");
         int opcaoGerenciarCliente = 0;
-        do{ 
+        do {
             System.out.println("Digite uma opção");
             System.out.println("1 - Cadastra novo cliente");
             System.out.println("2 - Remover Cliente inativo");
-            System.out.println("3 - Listar Clientes");
             System.out.println("0 - Volta ao menu do funcionario");
             opcaoGerenciarCliente = scanner.nextInt();
             scanner.nextLine();
@@ -25,41 +26,57 @@ public abstract class GerenciarCliente {
                     System.out.println("Endereço");
                     String endereco = scanner.nextLine();
                     System.out.println("Cpf :");
-                    Long cpf = scanner.nextLong();
-                    scanner.nextLine();
+                    Long cpf;
+                    do {
+                        cpf = scanner.nextLong();
+                        scanner.nextLine(); 
+
+                        if (cpf == 0) {
+                            System.out.println("Voltando ao menu...");
+                            return;
+                        }
+
+                        if (controller.cpfValido(cpf)) {
+                            System.out.println("CPF já registrado! Digite outro CPF ou 0 para voltar:");
+                        }
+
+                    } while (controller.cpfValido(cpf));
+
                     System.out.println("Numero de Contato");
                     Long numero = scanner.nextLong();
                     scanner.nextLine();
+                    
                     System.out.println("Data De Nascimento : ");
                     String dataNascimento = scanner.nextLine();
+                    LocalDate localDateNasicimento;
+                        try {
+                            localDateNasicimento = controller.dataStringParaLocaLDate(dataNascimento);
+                        } catch (Exception e) {
+                            System.out.println("Data Invalida, retornando...");
+                            System.err.println("Data fora de formato " + e.getMessage() + "Data :" + LocalDate.now()
+                                    + " Hora :" + LocalTime.now());
+                            break;
+                        }
 
-                    boolean cadastrarUsuario = controller.cadastrarCliente( nome, email,  endereco,  cpf,  numero,  dataNascimento);
-                    System.out.println(cadastrarUsuario ? "Cliente cadastrado com Sucesso !!" : "Erro ao cadastrar Usuario !");
+
+                    boolean cadastrarUsuario = controller.cadastrarCliente(nome, email, endereco, cpf, numero,
+                            dataNascimento);
+                    System.out.println(
+                            cadastrarUsuario ? "Cliente cadastrado com Sucesso !!" : "Erro ao cadastrar Usuario !");
                     break;
                 case 2:
-                    
-                    break;
-                case 3:
-                    
+                    // falta fazer
                     break;
                 case 0:
                     System.out.println("Voltando ao menu");
                     break;
-            
+
                 default:
                     break;
             }
-        
 
-        }while(opcaoGerenciarCliente != 0);
-
-
-
-
-
+        } while (opcaoGerenciarCliente != 0);
 
     }
-
-
 
 }

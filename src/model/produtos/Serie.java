@@ -17,30 +17,30 @@ public class Serie extends Produto {
                 classificacaoIndicativa);
         this.temporada = temporada;
     }
-    public static Serie criarSerie(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,Categoria categoria, Classe classe, Classificacao classificacaoIndicativa,int temporada){
-        return new Serie(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe, classificacaoIndicativa, temporada);
+
+    public static Serie criarSerie(int codigo, String nome, LocalDate dataCadastro, int quantidadeEstoque,
+            Categoria categoria, Classe classe, Classificacao classificacaoIndicativa, int temporada) {
+        return new Serie(codigo, nome, dataCadastro, quantidadeEstoque, categoria, classe, classificacaoIndicativa,
+                temporada);
     }
-    
-    @Override
-    public String exibirInformacoesCruciais() {
-       return "Nome: " + nome + ", Categoria: " + categoria + ", Classe: " + classe + ", Numero Temporada : " + temporada;
-    
-    }
+
     @Override
     public void diminuirEstoque() {
         this.quantidadeEstoque -= 1;
-        
+
     }
+
     @Override
     public void aumentarEstoque() {
-        this.quantidadeEstoque += 1; 
+        this.quantidadeEstoque += 1;
     }
-     @Override
+
+    @Override
     public void vezesEmprestado() {
         vezesEmprestado += 1;
-        
+
     }
-    
+
     public int getTemporada() {
         return temporada;
     }
@@ -49,17 +49,15 @@ public class Serie extends Produto {
         this.temporada = temporada;
     }
 
+    public String exibirInformacoesCruciais() {
+        return codigo + " - " + nome + ", classificação: " + classificacaoIndicativa + ", cadastro " + dataCadastro +
+                ", classe: " + classe + ", estoque: " + quantidadeEstoque;
+    }
 
     @Override
     public String toString() {
-        return codigo + " - " + nome + ", " + dataCadastro + ", estoque: " + quantidadeEstoque +
-           ", categoria: " + categoria + ", classe: " + classe +
-           ", classificação: " + classificacaoIndicativa + ", temporada: " + temporada;
-}
-
-
-    
-
-    
-    
+        return codigo + "- " + nome + ", " +
+                ", categoria: " + categoria + ", classe: " + classe +
+                ", classificação: " + classificacaoIndicativa + ", temporada: " + temporada ;
+    }
 }
