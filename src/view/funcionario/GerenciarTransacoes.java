@@ -52,7 +52,7 @@ public abstract class GerenciarTransacoes {
                             dataDevolucao = controller.dataStringParaLocaLDate(dataE).plusDays(7);
                         } catch (Exception e) {
                             System.err.println("Data fora de formato " + e.getMessage() + "Data :" + LocalDate.now()
-                                    + " Hora :" + LocalTime.now());
+                                    + " Hora :" + LocalTime.now() +",");
                             break;
                         }
                         do {
@@ -88,11 +88,11 @@ public abstract class GerenciarTransacoes {
                                         controller.emprestarProdutos(carrinhoUsuario, cpf, dataEmprestimo);
                                     } catch (DataFormatException e) {
                                         System.err.println("Emprestimo nao Efetuado " + e.getMessage() + "Data :"
-                                                + LocalDate.now() + " Hora :" + LocalTime.now());
+                                                + LocalDate.now() + " Hora :" + LocalTime.now() +"," );
                                         break;
                                     }catch(IOException e){
                                         System.err.println("Emprestimo criado erroneamente "+ e.getMessage() + "Data :"
-                                        + LocalDate.now() + " Hora :" + LocalTime.now());
+                                        + LocalDate.now() + " Hora :" + LocalTime.now() +",");
                                     }
                                     System.out.println("Empréstimo realizado!");
 
@@ -193,7 +193,7 @@ public abstract class GerenciarTransacoes {
 
                         controller.alterarDataDevolucao(cpfProrrogar, dataNovaString);
                     } catch (Exception e) {
-                        System.err.println("Data inválida: " + e.getMessage());
+                        System.err.println("Data inválida: " + e.getMessage() +",");
                     }
 
                 } else {

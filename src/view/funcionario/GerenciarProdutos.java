@@ -132,7 +132,7 @@ public abstract class GerenciarProdutos {
                                 controller.alterarClasse(produto, novaClasse);
                                 
                             } catch (IllegalArgumentException e) {
-                                System.err.println ("Classe nao encontrada"+ e.getMessage() + LocalDate.now() + LocalTime.now());
+                                System.err.println ("Classe nao encontrada"+ e.getMessage() + LocalDate.now() + LocalTime.now() +",");
                                 System.out.println("Classe nao encontrada");
                                 break;
                             }
@@ -146,7 +146,7 @@ public abstract class GerenciarProdutos {
                             try {
                                 controller.alterarCategoria(produto, novaCategoria);
                             } catch (Exception e) {
-                                System.err.println("Categoria nao localizada "+ e.getMessage() + LocalDate.now() + LocalTime.now());
+                                System.err.println("Categoria nao localizada "+ e.getMessage() + LocalDate.now() + LocalTime.now()+",");
                                 System.out.println("Categoria nao localizada!");
                                 break;
                             }
@@ -161,7 +161,7 @@ public abstract class GerenciarProdutos {
                                 controller.alterarNome(produto, novoNome);
                                 
                             } catch (Exception e) {
-                                System.err.println(" Texto vazio " + e.getMessage() + LocalDate.now() + LocalTime.now());
+                                System.err.println(" Texto vazio " + e.getMessage() + LocalDate.now() + LocalTime.now() +",");
                                 System.out.println("Nao pode salvar um nome vazio!");
                                 break;
                             }

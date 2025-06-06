@@ -1,3 +1,23 @@
-Arquivo não encontrado model.pessoa.Cliente; local class incompatible: stream classdesc serialVersionUID = -8585357543041919973, local class serialVersionUID = 8502953690046091164Data :2025-06-05 Hora :00:04:08.556338500
-Data fora de formato Text 'dasda' could not be parsed at index 0Data :2025-06-05 Hora :00:04:21.552469600
-Data fora de formato Text 'adada' could not be parsed at index 0Data :2025-06-05 Hora :00:04:50.976950200
+Erros
+Numero Como String null2025-06-0523:26:38.709315100
+Data fora de formato Text 'sdjlajkdjakld' could not be parsed at index 0Data :2025-06-05 Hora :23:26:41.459040800
+Data fora de formato Text 'dasdadask' could not be parsed at index 0Data :2025-06-05 Hora :23:40:47.051371200
+Cpf digitado Como Stringnull2025-06-0523:40:58.260189400
+Cpf digitado Como Stringnull2025-06-0523:40:58.874996800
+Cpf digitado Como Stringnull2025-06-0523:40:59.360866400
+Cpf digitado Como Stringnull2025-06-0523:40:59.737636300
+Cpf digitado Como Stringnull2025-06-0523:41:00.235517100
+Cpf digitado Como Stringnull2025-06-0523:41:00.643743700
+Cpf digitado Como Stringnull2025-06-0523:41:00.964615300
+Numero Como String null2025-06-0523:41:04.737088600
+Numero Como String null2025-06-0523:41:05.356758700
+Numero Como String null2025-06-0523:41:05.990173700
+Numero Como String null2025-06-0523:41:06.773226400
+Numero Como String null2025-06-0523:41:06.985939300
+Numero Como String null2025-06-0523:41:07.325925100
+Numero Como String null2025-06-0523:41:08.016984400
+Numero Como String null2025-06-0523:41:08.711576100
+Data fora de formato Text 'adasdad' could not be parsed at index 0Data :2025-06-05 Hora :23:41:11.153632600
+Cpf digitado Como Stringnull2025-06-0523:46:29.011774500
+Numero Como String null2025-06-0523:46:35.502720600
+Data fora de formato Text '2025/07/26' could not be parsed at index 2Data :2025-06-05 Hora :23:47:00.550185700

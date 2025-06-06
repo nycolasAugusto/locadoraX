@@ -21,7 +21,8 @@ import view.funcionario.GerenciarTransacoes;
 public class App {
     public static void main(String[] args) throws Exception {
         Log.setError();
-
+        
+        
         List<Produto> listaDeProdutos = new ArrayList<>();
         List<Cliente> listaDeClientes = new ArrayList<>();
         List<Emprestimo> listaDeEmprestimos = new ArrayList<>();
@@ -36,7 +37,7 @@ public class App {
             System.out.println("Dados baixados com sucesso");
         } catch (IOException e) {
             System.err.println("Arquivo não encontrado " + e.getMessage() + "Data :" + LocalDate.now() + " Hora :"
-                    + LocalTime.now());
+                    + LocalTime.now() +",");
         } catch (ClassNotFoundException e) {
             System.err.println("Arquivo corrompido");
         }
@@ -108,7 +109,7 @@ public class App {
                         System.out.println("Encerrando o sistema");
                     } catch (IOException e) {
                         System.out.println("Erro ao salvar Arquivo");
-                        System.err.println(e.getMessage());
+                        System.err.println(e.getMessage() + ",");
                     }
                     break;
                 default:

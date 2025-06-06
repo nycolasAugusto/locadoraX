@@ -17,7 +17,13 @@ tenta nao spamar funcao da IA , pq senao vamo ter que arrumar na hora, pq um dos
 tenta fazer isso que sexta vou ver com o professor, pq to com duvida em outras paradas 
 ai preciso da ajuda dele pra arrumar, faz isso ate sexta de noite , pq sabado vou mexer 
 e quero terminar ate no maximo terca
- 
+
+
+
+--------------------------
+eu Adicionar Exceptio nos case do sistema para receber apenas numeros 
+ver com o professir a questao da serializacao
+adicionar mais expection e melhorar eles para mostrar no erro.txt pois ta aparecendo null alguns dados....
 
 
 
